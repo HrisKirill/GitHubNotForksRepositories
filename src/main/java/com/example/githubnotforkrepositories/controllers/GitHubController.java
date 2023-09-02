@@ -1,6 +1,7 @@
 package com.example.githubnotforkrepositories.controllers;
 
 import com.example.githubnotforkrepositories.dto.GitHubRepositoryDTO;
+import com.example.githubnotforkrepositories.exceptions.UnsupportedMediaTypeException;
 import com.example.githubnotforkrepositories.mappers.MapModelToDTO;
 import com.example.githubnotforkrepositories.models.GitHubRepository;
 import com.example.githubnotforkrepositories.services.BranchService;
@@ -27,9 +28,13 @@ public class GitHubController {
         this.mapper = mapper;
     }
 
-    @GetMapping(value = "/repositories/{userName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/repositories/{userName}")
     public ResponseEntity<List<GitHubRepositoryDTO>> getRepositories(
-            @PathVariable String userName) {
+            @PathVariable String userName, @RequestHeader(value = "Accept") String acceptHeader) {
+
+        if(acceptHeader.contains(MediaType.APPLICATION_XML_VALUE)){
+            throw new UnsupportedMediaTypeException("XML is not supported. Use JSON.");
+        }
 
         List<GitHubRepository> gitHubRepositories = gitHubRepositoryService.
                 getUserRepositories(userName);
