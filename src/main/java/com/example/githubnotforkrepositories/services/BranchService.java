@@ -2,8 +2,8 @@ package com.example.githubnotforkrepositories.services;
 
 import com.example.githubnotforkrepositories.exceptions.ModelNotFoundException;
 import com.example.githubnotforkrepositories.models.Branch;
+import com.example.githubnotforkrepositories.services.constants.URLServiceConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +25,7 @@ public class BranchService {
     public List<Branch> getBranches(String userName, String repositoryName) {
         try {
             Branch[] branches = restTemplate.getForObject(
-                    "https://api.github.com/repos/{username}/{repoName}/branches",
+                    URLServiceConstants.BRANCH_GET_BRANCHES_URL,
                     Branch[].class,
                     userName,
                     repositoryName

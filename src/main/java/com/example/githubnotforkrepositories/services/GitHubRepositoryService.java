@@ -2,8 +2,8 @@ package com.example.githubnotforkrepositories.services;
 
 import com.example.githubnotforkrepositories.exceptions.ModelNotFoundException;
 import com.example.githubnotforkrepositories.models.GitHubRepository;
+import com.example.githubnotforkrepositories.services.constants.URLServiceConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +25,7 @@ public class GitHubRepositoryService {
     public List<GitHubRepository> getUserRepositories(String userName) {
         try {
             GitHubRepository[] gitHubRepositories = restTemplate.getForObject(
-                    "https://api.github.com/users/{userName}/repos",
+                    URLServiceConstants.REPOSITORY_GET_REPOSITORIES_URL,
                     GitHubRepository[].class,
                     userName
             );
