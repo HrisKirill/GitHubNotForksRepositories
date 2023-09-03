@@ -1,6 +1,6 @@
 package com.example.githubnotforkrepositories.services;
 
-import com.example.githubnotforkrepositories.exceptions.UserNotFoundException;
+import com.example.githubnotforkrepositories.exceptions.ModelNotFoundException;
 import com.example.githubnotforkrepositories.models.GitHubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -34,7 +34,7 @@ public class GitHubRepositoryService {
                     : Collections.emptyList();
 
         } catch (HttpClientErrorException.NotFound exception) {
-            throw new UserNotFoundException("User not found");
+            throw new ModelNotFoundException("User not found");
         }
     }
 
