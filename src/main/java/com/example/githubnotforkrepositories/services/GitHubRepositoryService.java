@@ -18,8 +18,8 @@ public class GitHubRepositoryService {
     private final RestTemplate restTemplate;
 
     @Autowired
-    public GitHubRepositoryService(RestTemplateBuilder restTemplateBuilder) {
-        restTemplate = restTemplateBuilder.build();
+    public GitHubRepositoryService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     public List<GitHubRepository> getUserRepositories(String userName) {

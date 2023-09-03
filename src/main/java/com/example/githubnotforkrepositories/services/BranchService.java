@@ -18,8 +18,8 @@ public class BranchService {
     private final RestTemplate restTemplate;
 
     @Autowired
-    public BranchService(RestTemplateBuilder restTemplateBuilder) {
-        restTemplate = restTemplateBuilder.build();
+    public BranchService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     public List<Branch> getBranches(String userName, String repositoryName) {
