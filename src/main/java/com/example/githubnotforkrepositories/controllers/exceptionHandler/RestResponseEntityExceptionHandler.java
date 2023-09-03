@@ -1,7 +1,7 @@
 package com.example.githubnotforkrepositories.controllers.exceptionHandler;
 
 import com.example.githubnotforkrepositories.exceptions.UnsupportedMediaTypeException;
-import com.example.githubnotforkrepositories.exceptions.UserNotFoundException;
+import com.example.githubnotforkrepositories.exceptions.ModelNotFoundException;
 import com.example.githubnotforkrepositories.models.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class RestResponseEntityExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(ModelNotFoundException.class)
     public ResponseEntity<Response> handleUserNotFoundException(Exception e) {
         Response response = new Response(e.getMessage(), HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(response, response.getStatus());
